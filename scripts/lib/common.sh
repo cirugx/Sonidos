@@ -167,7 +167,7 @@ verificar_dependencias() {
     # Donde TSC son flags (T.., .S., ..C). Extraemos el segundo campo.
     local filtros_lista
     filtros_lista=$(ffmpeg -hide_banner -filters 2>/dev/null \
-        | awk '/^ [T.][S.][C.] / {print $2}' | sort -u || echo "")
+        | awk '/^[[:space:]]+[T.][S.][C.]/ {print $2}' | sort -u || echo "")
 
     local -a filtros_requeridos=(
         "anoisesrc" "sine" "amix" "volume" "lowpass" "highpass" "aformat" "pan"

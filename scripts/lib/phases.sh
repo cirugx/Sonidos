@@ -219,7 +219,7 @@ fase_5_master() {
         # Los [] rodean LABELS, no nombres de filtro.
         wide_chain+="${stereo_filt%,}[wide]"
     else
-        wide_chain+="[wide]"
+        wide_chain+="anull[wide]"
     fi
     # Lim chain: [wide] -> (limiting) -> [lim] -> aformat -> [final]
     # El label final [final] es el que se mapea con -map.
