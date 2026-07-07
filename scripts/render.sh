@@ -7,7 +7,16 @@ IFS=$'\n\t'
 
 # ─── CONFIGURACIÓN GLOBAL ────────────────────────────────────────────────────
 readonly SCRIPT_VERSION="3.2.2-minimal"
-DIR="${DIR:-/home/jesuslangarica/AudiolibrosPro/audioCLI}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+CONFIG_FILE="${CONFIG_FILE:-${PROJECT_ROOT}/config/default.env}"
+DIR="${DIR:-${PROJECT_ROOT}/output}"
+
+if [[ -f "${CONFIG_FILE}" ]]; then
+    # shellcheck disable=SC1090
+    source "${CONFIG_FILE}"
+fi
+
 : "${DURACION:=10}"
 : "${SAMPLE_RATE:=48000}"
 : "${BITS:=24}"
